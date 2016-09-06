@@ -14,10 +14,45 @@ public class LoggingProcessor implements Processor {
 
 	Log log = LogFactory.getLog(LoggingProcessor.class);
 
+	/**
+	 * Define a custom log message, to be displayed before everything else
+	 */
+	String logMessage = null;
+
+	/**
+	 * Define a header to be logged; if undefined, all headers are going to be logged
+	 */
+	String logHeader = null;
+
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		StringBuilder b = new StringBuilder();
-		exchange.getIn().getHeaders().forEach((key, value) -> b.append(key + "=" + value + "; "));
+		if (logMessage != null) {
+			b.append(logMessage+" ");
+		}
+		if (logHeader != null && logHeader.length() > 0) {
+			// Logging specific Headers:
+			b.append(logHeader + "=" + exchange.getIn().getHeader(logHeader) + ";");
+		} else {
+			// logging all headers
+			exchange.getIn().getHeaders().forEach((key, value) -> b.append(key + "=" + value + "; "));
+		}
 		log.info("Processing exchange message " + b.toString());
+	}
+
+	public String getLogMessage() {
+		return logMessage;
+	}
+
+	public void setLogMessage(String logMessage) {
+		this.logMessage = logMessage;
+	}
+
+	public String getLogHeader() {
+		return logHeader;
+	}
+
+	public void setLogHeader(String logHeader) {
+		this.logHeader = logHeader;
 	}
 }

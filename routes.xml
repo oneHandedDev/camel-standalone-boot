@@ -12,7 +12,7 @@
         <route>
             <!-- Example for Choice -->
             <from uri="jetty:http://0.0.0.0:8080/?matchOnUriPrefix=true"/>
-            <bean ref="httpLoggingProcessor"/>
+            <bean ref="loggingThrottleProcessor"/>
             <choice>
                 <when>
                     <simple>${in.header.TYP} regex '(.*)SchuelerSuche(.*)'</simple>
@@ -64,7 +64,11 @@
             <to uri="http://localhost:80/?bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
         </route>
     </routeContext>
-    <bean id="httpLoggingProcessor" class="de.isys.software.camel.processor.LoggingProcessor"/>
+    <bean id="loggingProcessor" class="de.isys.software.camel.processor.LoggingProcessor"/>
+    <bean id="loggingThrottleProcessor" class="de.isys.software.camel.processor.LoggingProcessor">
+        <property name="logMessage" value="THROTTLING REQUEST ..."/>
+        <property name="logHeader" value="TYP"/>
+    </bean>
     <bean id="http503ErrorProcessor" class="de.isys.software.camel.processor.HttpStatusCodeProcessor">
         <property name="httpStatusCode" value="503"/>
     </bean>
