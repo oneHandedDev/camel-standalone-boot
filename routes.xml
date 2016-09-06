@@ -15,11 +15,11 @@
             <bean ref="httpLoggingProcessor"/>
             <choice>
                 <when>
-                    <simple>${in.header.TYP} regex '(.*)SchuelerSuche(.*)'</simple>
+                    <simple>${in.header.REQ_TYPE} regex '(.*)something(.*)'</simple>
                     <to uri="direct:throttle1"/>
                 </when>
                 <when>
-                    <simple>${in.header.TYP} == 'AbgabeErklaerung'</simple>
+                    <simple>${in.header.REQ_TYPE} == 'something_else'</simple>
                     <to uri="direct:throttle2"/>
                 </when>
                 <otherwise>
