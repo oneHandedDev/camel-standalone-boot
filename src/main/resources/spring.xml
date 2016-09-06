@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring
+       http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- Camel Context: add your Routes to routes.xml -->
+    <import resource="file:${camel.config:./routes.xml}"/>
+    <!--<import resource="classpath:routes.xml"/>-->
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <routeContextRef ref="routes"/>
+    </camelContext>
+</beans>

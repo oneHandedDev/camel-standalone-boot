@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring
+       http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- this is an included XML file where we only the the routeContext -->
+    <routeContext id="routes" xmlns="http://camel.apache.org/schema/spring">
+        <route>
+            <!-- Example for Choice -->
+            <from uri="jetty:http://0.0.0.0:8080/?matchOnUriPrefix=true"/>
+            <bean ref="httpLoggingProcessor"/>
+            <choice>
+                <when>
+                    <simple>${in.header.TYP} regex '(.*)SchuelerSuche(.*)'</simple>
+                    <to uri="direct:throttle1"/>
+                </when>
+                <when>
+                    <simple>${in.header.TYP} == 'AbgabeErklaerung'</simple>
+                    <to uri="direct:throttle2"/>
+                </when>
+                <otherwise>
+                    <to uri="direct:production"/>
+                </otherwise>
+            </choice>
+
+        </route>
+        <route>
+            <!-- Throttle Example waiting for execution -->
+            <from uri="direct:throttle1"/>
+            <throttle rejectExecution="false" timePeriodMillis="10000">
+                <constant>10</constant>
+                <to uri="direct:production"/>
+            </throttle>
+        </route>
+        <route>
+            <!-- Throttle Example with rejecting execution of requests -->
+            <from uri="direct:throttle2"/>
+            <throttle rejectExecution="true" timePeriodMillis="10000" asyncDelayed="true">
+                <constant>1</constant>
+                <to uri="direct:production"/>
+            </throttle>
+            <onException>
+                <exception>java.lang.Exception</exception>
+                <handled>
+                    <constant>true</constant>
+                </handled>
+                <process ref="http503ErrorProcessor"/>
+            </onException>
+        </route>
+        <route>
+            <!-- another throttle example with waiting requests -->
+            <from uri="direct:throttle3"/>
+            <throttle timePeriodMillis="1000">
+                <constant>1</constant>
+                <to uri="direct:production"/>
+            </throttle>
+        </route>
+        <route>
+            <from uri="direct:production"/>
+            <to uri="http://localhost:80/?bridgeEndpoint=true&amp;throwExceptionOnFailure=false"/>
+        </route>
+    </routeContext>
+    <bean id="httpLoggingProcessor" class="de.isys.software.camel.processor.LoggingProcessor"/>
+    <bean id="http503ErrorProcessor" class="de.isys.software.camel.processor.HttpStatusCodeProcessor">
+        <property name="httpStatusCode" value="503"/>
+    </bean>
+
+</beans>
