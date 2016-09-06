@@ -2,6 +2,7 @@
 .idea/**/*.xml
 **/*.log
 **/*.zip
+**/*.iml
 
 # Created by https://www.gitignore.io/api/java,intellij,eclipse,maven,netbeans
 
