@@ -28,7 +28,7 @@ or run via included bash-script
 
 **TODOs:**
 - [x] Expose simple JMX interface
-- [ ] Shell-Skript for starting the application
+- [x] Shell-Skript for starting the application
 - [ ] Gracefully reload config (for configuration without downtime)
 - [x] Log4j fileappender
 - [x] Error Processor
