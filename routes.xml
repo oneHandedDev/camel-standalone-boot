@@ -7,7 +7,7 @@
        http://camel.apache.org/schema/spring
        http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-    <!-- this is an included XML file where we only the the routeContext -->
+    <!-- this is an included XML file where we only define the the routeContext -->
     <routeContext id="routes" xmlns="http://camel.apache.org/schema/spring">
         <route>
             <!-- Example for Choice -->
@@ -15,11 +15,11 @@
             <bean ref="loggingThrottleProcessor"/>
             <choice>
                 <when>
-                    <simple>${in.header.TYP} regex '(.*)SchuelerSuche(.*)'</simple>
+                    <simple>${in.header.REQ_TYPE} regex '(.*)something(.*)'</simple>
                     <to uri="direct:throttle1"/>
                 </when>
                 <when>
-                    <simple>${in.header.TYP} == 'AbgabeErklaerung'</simple>
+                    <simple>${in.header.REQ_TYPE} == 'something_else'</simple>
                     <to uri="direct:throttle2"/>
                 </when>
                 <otherwise>
