@@ -1,6 +1,8 @@
 camel-standalone-boot
-[![Build Status](https://travis-ci.org/oneHandedDev/camel-standalone-boot.svg?branch=master)](https://travis-ci.org/oneHandedDev/camel-standalone-boot)
 =======================
+
+[![Build Status](https://travis-ci.org/oneHandedDev/camel-standalone-boot.svg?branch=master)](https://travis-ci.org/oneHandedDev/camel-standalone-boot)
+
 
 **Run as Dev:**
 
