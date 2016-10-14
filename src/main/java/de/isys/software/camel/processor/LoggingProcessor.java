@@ -37,7 +37,7 @@ public class LoggingProcessor implements Processor {
 			// logging all headers
 			exchange.getIn().getHeaders().forEach((key, value) -> b.append(key + "=" + value + "; "));
 		}
-		log.info("Processing exchange message " + b.toString());
+		log.info("Processing exchange: " + b.toString());
 	}
 
 	public String getLogMessage() {

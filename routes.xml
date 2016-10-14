@@ -23,12 +23,13 @@
                     <to uri="direct:throttle2"/>
                 </when>
                 <otherwise>
-                    <to uri="direct:production"/>
+                    <to uri="direct:throttle1"/>
                 </otherwise>
+
             </choice>
 
         </route>
-        <route>
+        <route id="throttle1">
             <!-- Throttle Example waiting for execution -->
             <from uri="direct:throttle1"/>
             <throttle rejectExecution="false" timePeriodMillis="10000">
@@ -36,7 +37,7 @@
                 <to uri="direct:production"/>
             </throttle>
         </route>
-        <route>
+        <route id="throttle2">
             <!-- Throttle Example with rejecting execution of requests -->
             <from uri="direct:throttle2"/>
             <throttle rejectExecution="true" timePeriodMillis="10000" asyncDelayed="true">
@@ -71,6 +72,10 @@
     </bean>
     <bean id="http503ErrorProcessor" class="de.isys.software.camel.processor.HttpStatusCodeProcessor">
         <property name="httpStatusCode" value="503"/>
+    </bean>
+
+    <bean id="http200ErrorProcessor" class="de.isys.software.camel.processor.HttpStatusCodeProcessor">
+        <property name="httpStatusCode" value="200"/>
     </bean>
 
 </beans>

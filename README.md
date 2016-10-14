@@ -34,3 +34,4 @@ or run via included bash-script
 - [x] Error Processor
 - [x] Logging Processor
 - [ ] Gradle Support
+- [ ] Camel Watch?

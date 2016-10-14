@@ -5,7 +5,7 @@
 
     <groupId>de.isys.software.camel</groupId>
     <artifactId>camel-standalone-boot</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -81,11 +81,11 @@
             <version>${camel.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-spring-redis</artifactId>
-            <version>${camel.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.camel</groupId>-->
+            <!--<artifactId>camel-spring-redis</artifactId>-->
+            <!--<version>${camel.version}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.apache.camel</groupId>

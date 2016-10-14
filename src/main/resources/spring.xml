@@ -10,6 +10,7 @@
     <import resource="file:${camel.config:./routes.xml}"/>
     <!--<import resource="classpath:routes.xml"/>-->
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <jmxAgent id="jmx" loadStatisticsEnabled="true" />
         <routeContextRef ref="routes"/>
     </camelContext>
 </beans>
