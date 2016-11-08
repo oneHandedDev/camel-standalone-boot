@@ -13,11 +13,11 @@ import org.apache.commons.logging.LogFactory;
  */
 public class HttpStatusCodeProcessor implements Processor {
 
-	Log log = LogFactory.getLog(HttpStatusCodeProcessor.class);
+	private Log log = LogFactory.getLog(HttpStatusCodeProcessor.class);
 
-	int httpStatusCode;
+	private int httpStatusCode;
 
-	String httpBody = null;
+	private String httpBody = null;
 
 	/**
 	 * Sets HTTP-Status-Code on Out-Object in Exchange to defined Status-Code

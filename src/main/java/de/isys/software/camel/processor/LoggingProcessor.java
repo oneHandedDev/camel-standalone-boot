@@ -12,7 +12,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class LoggingProcessor implements Processor {
 
-	Log log = LogFactory.getLog(LoggingProcessor.class);
+	private Log log = LogFactory.getLog(LoggingProcessor.class);
 
 	/**
 	 * Define a custom log message, to be displayed before everything else

@@ -22,7 +22,7 @@ import java.util.List;
 @ManagedResource(description = "Camel Interfaces for Operations actions")
 public class CamelOperations implements ApplicationContextAware {
 
-	Log log = LogFactory.getLog(CamelOperations.class);
+	private Log log = LogFactory.getLog(CamelOperations.class);
 
 	@Autowired
 	private CamelContext camelContext;
