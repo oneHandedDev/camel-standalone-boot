@@ -3,7 +3,11 @@ camel-standalone-boot
 
 [![Build Status](https://travis-ci.org/oneHandedDev/camel-standalone-boot.svg?branch=master)](https://travis-ci.org/oneHandedDev/camel-standalone-boot) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2d44181afdc74290bfda6d5f32bfa7b5)](https://www.codacy.com/app/stefan-haupt/camel-standalone-boot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oneHandedDev/camel-standalone-boot&amp;utm_campaign=Badge_Grade)
 
+
+
 JAVA 8 REQUIRED
+
+
 
 **Run as Dev:**
 
