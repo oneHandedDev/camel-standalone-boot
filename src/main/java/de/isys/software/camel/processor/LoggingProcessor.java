@@ -17,18 +17,18 @@ public class LoggingProcessor implements Processor {
 	/**
 	 * Define a custom log message, to be displayed before everything else
 	 */
-	String logMessage = null;
+	private String logMessage = null;
 
 	/**
 	 * Define a header to be logged; if undefined, all headers are going to be logged
 	 */
-	String logHeader = null;
+	private String logHeader = null;
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
 		StringBuilder b = new StringBuilder();
 		if (logMessage != null) {
-			b.append(logMessage+" ");
+			b.append(logMessage + " ");
 		}
 		if (logHeader != null && logHeader.length() > 0) {
 			// Logging specific Headers:
